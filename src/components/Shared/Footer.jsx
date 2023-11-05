@@ -7,7 +7,7 @@ const Footer = () => {
         <>
 
         <footer className="bg-[#FFFFFF] shadow-lg">
-        <section className="flex flex-col md:flex-row lg:flex-row  justify-between p-4 md:p-4 lg:p-5 text-black space-y-5">
+        <section className="flex flex-col md:flex-col lg:flex-row  justify-between p-4 md:p-4 lg:p-5 text-black space-y-5">
 
 <div className="mt-6">
     <img className="w-[120px] object-cover" src={logo} alt="" />
@@ -21,7 +21,7 @@ const Footer = () => {
 
 <div className="ml-3">
      <ul className="mt-4">
-        <li className="flex items-center gap-2"> <AiFillHome className="text-gray-400"></AiFillHome> Sector-4, Azampur, Uttara</li>
+        <li className="flex items-center gap-2"> <AiFillHome className="text-gray-400"></AiFillHome> Sector-3, Azampur, Uttara</li>
         <li className="flex items-center gap-2"><AiFillPhone className="text-gray-400"></AiFillPhone> +8801316782</li>
         <li className="flex items-center gap-2"><AiTwotoneMail className="text-gray-400"></AiTwotoneMail>bookCorner@gmail.com</li>
      </ul>
