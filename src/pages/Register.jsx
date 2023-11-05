@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
+
+    const name = useContext(AuthContext);
+    console.log(name);
 
     const [displayPassIcon, setDisplayPassIcon] = useState(false)
 
