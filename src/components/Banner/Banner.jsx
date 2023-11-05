@@ -21,7 +21,7 @@ const Banner = () => {
             <p className="font-bold"> Find books, media, databases, journals and digital resources. <br /> The library is open <span className="text-2xl text-[#0087EB] font-bold">10:00 AM - 8:00 PM</span></p>
 
             <div className="flex gap-7">
-            <button className=" px-4 py-2 bg-[#68AFFF] font-bold rounded-md hover:bg-gray-500 hover:text-white">Find Books</button>
+            <button className=" px-4 py-2 bg-[#0087EB] font-bold rounded-md hover:bg-gray-500 hover:text-white">Find Books</button>
             <button className="px-4 py-2 border border-[#0087EB] hover:bg-gray-500 hover:text-white hover:border-none rounded-md font-bold">Borrow Books</button>
             </div>
            </div>
