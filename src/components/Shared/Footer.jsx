@@ -11,15 +11,15 @@ const Footer = () => {
 
 <div className="mt-6">
     <img className="w-[120px] object-cover" src={logo} alt="" />
-    <p className="text-[#0087EB] ml-2 cursor-pointer">Library Management System</p>
+    <p className="text-[#0087EB] lg:ml-2 cursor-pointer">Library Management System</p>
 
- <div className="flex gap-4 mt-4 ml-3">
+ <div className="flex gap-4 mt-4 lg:ml-3">
     <a href=""> <span className="text-2xl text-[#1877F2]"><FaFacebook></FaFacebook></span> </a>
    <a href=""> <span className="text-2xl text-[#1DA1F2]"><FaTwitter></FaTwitter></span> </a>
     <a href=""> <span className="text-2xl text-[#0077B5]"><FaLinkedin></FaLinkedin></span> </a>
 </div>
 
-<div className="ml-3">
+<div className="lg:ml-3">
      <ul className="mt-4">
         <li className="flex items-center gap-2"> <AiFillHome className="text-gray-400"></AiFillHome> Sector-3, Azampur, Uttara</li>
         <li className="flex items-center gap-2"><AiFillPhone className="text-gray-400"></AiFillPhone> +8801316782</li>

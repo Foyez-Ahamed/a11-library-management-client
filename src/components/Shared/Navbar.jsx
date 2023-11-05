@@ -66,7 +66,7 @@ const Navbar = () => {
               <a className="cursor-pointer">
                 {" "}
                 <img
-                  className="w-[40px] lg:w-[100px] rounded-md lg:pt-2"
+                  className="w-[60px] lg:w-[100px] rounded-md lg:ml-[-12px] lg:pt-2"
                   src={logo}
                   alt="logo image"
                 />{" "}
@@ -80,7 +80,7 @@ const Navbar = () => {
           </div>
   
           <div className="navbar-end">
-            <button className="text-[16px] font-medium hover:bg-[#0087EB] hover:text-white px-4 py-1 rounded-md">Login</button>
+            <button className="text-[16px] font-medium bg-[#0087EB] hover:bg-gray-700  text-white px-4 py-1 lg:py-2 rounded-md">Login</button>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 
 const Banner = () => {
     return (
-        <div className="carousel w-full h-screen lg:h-[600px]">
+        <div className="carousel w-full h-screen lg:h-[500px]">
       <div id="slide1" className="carousel-item relative w-full">
         <img
           src={bannerOne}
