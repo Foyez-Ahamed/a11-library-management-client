@@ -80,7 +80,10 @@ const Navbar = () => {
           </div>
   
           <div className="navbar-end">
-            <button className="text-[16px] font-medium bg-[#0087EB] hover:bg-gray-700  text-white px-4 py-1 lg:py-2 rounded-md">Login</button>
+
+           <Link to='/login'> <button className="text-[16px] font-medium bg-[#0087EB] hover:bg-gray-700  text-white px-4 py-1 lg:py-2 rounded-md">Login</button></Link>
+
+
           </div>
         </div>
       </div>
