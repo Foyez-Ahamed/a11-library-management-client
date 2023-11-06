@@ -8,7 +8,7 @@ const BooksCategory = () => {
         <div>
         
       <div>
-        <h1 className="text-4xl font-bold">Books Categories</h1>
+        <h1 className="text-4xl font-bold">Book Categories</h1>
         <progress
           className="progress progress-primary w-[100px]"
           value="20"
