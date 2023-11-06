@@ -6,6 +6,13 @@ export default {
   ],
   theme: {
     extend: {},
+    theme: {
+      extend: {
+        fontFamily : {
+          roboto : "'Roboto', sans-serif"
+        }
+      },
+    },
   },
   plugins: [require("daisyui")],
 }

@@ -1,4 +1,5 @@
 import Banner from "../components/Banner/Banner";
+import BooksCategory from "../components/BooksCategory/BooksCategory";
 import FaqSection from "../components/FaqSection/FaqSection";
 import LibraryServices from "../components/LibraryServices/LibraryServices";
 import Footer from "../components/Shared/Footer";
@@ -16,7 +17,11 @@ const Home = () => {
                 <LibraryServices></LibraryServices>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-16">
+                <BooksCategory></BooksCategory>
+            </div>
+
+            <div className="mt-16">
                 <Trending></Trending>
             </div>
 
