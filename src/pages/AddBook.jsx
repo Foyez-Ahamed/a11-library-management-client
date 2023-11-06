@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 const AddBook = () => {
 
@@ -17,7 +18,27 @@ const AddBook = () => {
 
         const addBooks = {image, name, rating, quantity, author, category, description};
 
-        console.log(addBooks);
+      fetch('http://localhost:5000/books', {
+      method:'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(addBooks)
+    })
+    .then(res => res.json())
+    .then(data => {
+
+      if(data.insertedId){
+        Swal.fire({
+            title: 'success!',
+            text: 'Book added successfully',
+            icon: 'success',
+            confirmButtonText: 'Thanks!'
+          })
+    }
+
+    form.reset();
+    })
     }
 
     return (
