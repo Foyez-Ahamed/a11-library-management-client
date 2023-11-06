@@ -1,9 +1,21 @@
 import { AiOutlineMenu } from 'react-icons/ai';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
 
+   const {user, userLogout} = useAuth();
+   console.log(user, userLogout);
+
+   const handleLogout = () => {
+     userLogout()
+     .then(() => {
+      toast.success('Logout Successfully')
+     })
+     .catch();
+   }
 
     const navItems = (
         <>
@@ -81,7 +93,29 @@ const Navbar = () => {
   
           <div className="navbar-end">
 
-           <Link to='/login'> <button className="text-[16px] font-medium bg-[#0087EB] hover:bg-gray-700  text-white px-4 py-1 lg:py-2 rounded-md">Login</button></Link>
+            {
+              user?.email ? <>
+                
+                <div className="dropdown dropdown-end">
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+       <div className="w-10 rounded-full">
+        <img src= {user.photoURL} />
+       </div>
+        </label>
+       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+       <li>
+        <a className="justify-between">
+         {user.displayName}
+        </a>
+        </li>
+        <li><a>{user.email}</a></li>
+        <li><a onClick={handleLogout}>Logout</a></li>
+       </ul>
+        </div>
+              </> : <Link to='/login'> <button className="text-[16px] font-medium bg-[#0087EB] hover:bg-gray-700  text-white px-4 py-1 lg:py-2 rounded-md">Login</button></Link>
+            }
+
+           
 
 
           </div>

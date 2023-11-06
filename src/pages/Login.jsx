@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
 
@@ -10,11 +11,31 @@ const Login = () => {
     
     const [displayPassIcon, setDisplayPassIcon] = useState(false)
 
+    const handleLogin = e => {
+      e.preventDefault();
+     
+      const form = new FormData(e.currentTarget);
+     
+      const email = form.get('email');
+      const password = form.get('password');
+
+      userLogin(email, password)
+      .then((result) => {
+         console.log(result);
+         toast.success('Successfully Login');
+         e.target.reset();
+      })
+      .catch((error) => {
+        toast.error('Invalid email or password ! Please check it!', error)
+      })
+
+    }
+
     return (
         <div className="mt-16">
         <div className="flex justify-center items-center">
           <div className="shadow-xl p-8 w-full md:w-[450px] lg:w-[450px] bg-slate-100 rounded-xl">
-            {/* bg-gradient-to-r from-gray-500 to-blue-500 */}
+            
             <div>
               <h1 className="text-center font-medium text-3xl mb-6">
                 {" "}
@@ -22,7 +43,7 @@ const Login = () => {
               </h1>
             </div>
   
-            <form>
+            <form onSubmit={handleLogin}>
               <div className="relative">
                 <label htmlFor="email" className="font-medium ">Email </label> <br />
                 <input
