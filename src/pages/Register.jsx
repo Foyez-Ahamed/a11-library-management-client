@@ -60,7 +60,7 @@ const Register = () => {
         <div className="shadow-xl p-8 w-full md:w-[450px] lg:w-[450px] rounded-xl bg-slate-100">
           <div>
             <h1 className=" font-medium text-center text-3xl mb-6">
-              Register Here Pleas
+              Register Here Please
             </h1>
           </div>
 
