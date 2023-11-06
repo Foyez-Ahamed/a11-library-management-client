@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
@@ -8,8 +8,9 @@ import toast from "react-hot-toast";
 const Login = () => {
 
     const {userLogin, googleLogin} = useAuth();
-    
     const [displayPassIcon, setDisplayPassIcon] = useState(false)
+    const location = useLocation();
+    const goto = useNavigate();
 
     const handleLogin = e => {
       e.preventDefault();
@@ -20,10 +21,10 @@ const Login = () => {
       const password = form.get('password');
 
       userLogin(email, password)
-      .then((result) => {
-         console.log(result);
+      .then(() => {
          toast.success('Successfully Login');
          e.target.reset();
+         goto(location?.state? location.state : '/');
       })
       .catch((error) => {
         toast.error('Invalid email or password ! Please check it!', error)
@@ -34,7 +35,8 @@ const Login = () => {
     const handleGoogleLogin = (googleProvider) => {
        googleProvider()
        .then(() => {
-         toast.success('Successfully Login')
+         toast.success('Successfully Login');
+         goto(location?.state? location.state : '/');
        })
 
        .catch((error) => {

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -10,8 +10,9 @@ const auth = getAuth(app);
 const Register = () => {
 
     const {userRegister} = useAuth();
-
     const [displayPassIcon, setDisplayPassIcon] = useState(false);
+    const location = useLocation();
+    const goto = useNavigate();
 
     const handleUserRegister = e => {
     e.preventDefault();
@@ -34,11 +35,11 @@ const Register = () => {
     }
 
     userRegister(email, password)
-    .then((result) => {
-      console.log(result.user);
+    .then(() => {
       toast.success('Successfully Register');
       e.target.reset();
-
+      goto( location?.state ? location.state : '/' );
+      
       updateProfile(auth.currentUser, {
         displayName : name,
         photoURL: photoUrl
