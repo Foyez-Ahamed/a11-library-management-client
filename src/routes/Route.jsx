@@ -7,11 +7,13 @@ import BorrowedBooks from "../pages/BorrowedBooks";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../pages/ErrorPage";
 
 const Route = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
