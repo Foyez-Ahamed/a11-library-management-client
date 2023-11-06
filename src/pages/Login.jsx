@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 
 const Login = () => {
 
-    // const {userLogin} = useAuth();
+    const {userLogin} = useAuth();
     
     const [displayPassIcon, setDisplayPassIcon] = useState(false)
 
