@@ -1,14 +1,57 @@
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useContext, useState } from "react";
-import { AuthContext } from "../provider/AuthProvider";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { getAuth, updateProfile } from "firebase/auth";
+import app from "../firebase/firebase.config";
+import useAuth from "../hooks/useAuth";
+const auth = getAuth(app);
 
 const Register = () => {
 
-    const name = useContext(AuthContext);
-    console.log(name);
+    const {userRegister} = useAuth();
 
-    const [displayPassIcon, setDisplayPassIcon] = useState(false)
+    const [displayPassIcon, setDisplayPassIcon] = useState(false);
+
+    const handleUserRegister = e => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name");
+    const photoUrl = form.get("photoURL");
+    const email = form.get("email");
+    const password = form.get("password");
+
+    if (password.length < 6) {
+      toast.error("Your password must have at least 6 character!");
+      return;
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
+        password)) {
+        toast.error(
+        "Your password must have at least one capital letter and special character!"
+      );
+      return
+    }
+
+    userRegister(email, password)
+    .then((result) => {
+      console.log(result.user);
+      toast.success('Successfully Register');
+      e.target.reset();
+
+      updateProfile(auth.currentUser, {
+        displayName : name,
+        photoURL: photoUrl
+      })
+      .then()
+      .catch()
+    })
+
+    .catch(error => {
+      toast.error(error);
+    })
+
+    }
 
     return (
         <div className="mt-16">
@@ -20,7 +63,7 @@ const Register = () => {
             </h1>
           </div>
 
-          <form>
+          <form onSubmit={handleUserRegister}>
             <div className="relative">
               <label htmlFor="name" className="font-medium ">Name</label> <br />
               <input

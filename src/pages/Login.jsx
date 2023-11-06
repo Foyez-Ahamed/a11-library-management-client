@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
 
+    // const {userLogin} = useAuth();
+    
     const [displayPassIcon, setDisplayPassIcon] = useState(false)
 
     return (
