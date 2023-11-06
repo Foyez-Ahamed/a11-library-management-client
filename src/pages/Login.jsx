@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
 
-    const {userLogin} = useAuth();
+    const {userLogin, googleLogin} = useAuth();
     
     const [displayPassIcon, setDisplayPassIcon] = useState(false)
 
@@ -29,6 +29,17 @@ const Login = () => {
         toast.error('Invalid email or password ! Please check it!', error)
       })
 
+    }
+
+    const handleGoogleLogin = (googleProvider) => {
+       googleProvider()
+       .then(() => {
+         toast.success('Successfully Login')
+       })
+
+       .catch((error) => {
+         toast.error('Invalid google account ! Please check it', error);
+       })
     }
 
     return (
@@ -82,7 +93,7 @@ const Login = () => {
               </div>
             </form>
   
-            <button className=" bg-[#0087EB] hover:bg-slate-900 flex gap-2 justify-center items-center w-full py-3 rounded-md mt-5 text-white text-[15px] font-medium uppercase">
+            <button onClick={() => handleGoogleLogin(googleLogin)} className=" bg-[#0087EB] hover:bg-slate-900 flex gap-2 justify-center items-center w-full py-3 rounded-md mt-5 text-white text-[15px] font-medium uppercase">
               Google Login<FcGoogle className="text-xl"></FcGoogle>
             </button>
   
