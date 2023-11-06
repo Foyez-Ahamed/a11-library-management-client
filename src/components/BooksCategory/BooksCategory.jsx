@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const BooksCategory = () => {
 
@@ -8,7 +8,7 @@ const BooksCategory = () => {
         <div>
         
       <div>
-        <h1 className="text-4xl font-bold">Book Categories</h1>
+        <h1 className="text-4xl font-bold">Books Categories</h1>
         <progress
           className="progress progress-primary w-[100px]"
           value="20"
@@ -25,7 +25,7 @@ const BooksCategory = () => {
                 <div className="card-body">
                   <h2 className="card-title">{category.category}</h2>
                   <div className="card-actions justify-end mt-4">
-                    <button className="px-5 py-1 shadow-xl text-[#0087EB] rounded-md font-medium">See Books</button>
+                    <Link to={`books/${category.category}`}><button className="px-5 py-1 shadow-xl text-[#0087EB] rounded-md font-medium bg-gray-100">See Books</button></Link>
                   </div>
                 </div>
               </div>)

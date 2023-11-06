@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
+import Books from "../components/BooksCategory/Books";
 
 const Route = createBrowserRouter([
     {
@@ -20,6 +21,13 @@ const Route = createBrowserRouter([
                 element: <Home></Home>,
                 loader : () => fetch('http://localhost:5000/booksCategory')
             },
+
+            {
+                path: '/books/:category',
+                element : <Books></Books>,
+                loader : ({params}) => fetch(`http://localhost:5000/books/${params.category}`) 
+            },
+
             {
                 path: '/addBook',
                 element: <PrivateRoute> <AddBook></AddBook> </PrivateRoute>
