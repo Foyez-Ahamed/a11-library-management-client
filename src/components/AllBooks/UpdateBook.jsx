@@ -1,10 +1,11 @@
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateBook = () => {
 
     const books = useLoaderData();
     
-    const {image, name , author_name, category, rating} = books || {};
+    const {_id, image, name , author_name, category, rating} = books || {};
 
     const handleUpdateBooks = e => {
 
@@ -20,7 +21,24 @@ const UpdateBook = () => {
 
         const updateBooks = {image, name, rating, author, category};
 
-        console.log(updateBooks);
+        fetch(`http://localhost:5000/books/${_id}`, {
+          method:'PUT',
+          headers: {
+            'content-type' : 'application/json'
+          },
+          body: JSON.stringify(updateBooks)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if(data.modifiedCount > 0){
+            Swal.fire({
+                title: 'success!',
+                text: 'Book updated successfully',
+                icon: 'success',
+                confirmButtonText: 'Thanks'
+              })
+        }
+        })
     }
 
     return (
