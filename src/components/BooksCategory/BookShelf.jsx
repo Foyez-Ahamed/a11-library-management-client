@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const BookShelf = ({ book }) => {
   
-    const {image, name, author_name, category} = book || {};
+    const {_id, image, name, author_name, category} = book || {};
 
   return (
     <div>
@@ -24,7 +26,7 @@ const BookShelf = ({ book }) => {
          <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" />
          </div>
           <div className="card-actions justify-end absolute bottom-2 right-0">
-          <button className="px-5 py-1 shadow-xl text-[#0087EB] rounded-md font-medium bg-gray-100 underline">See Details</button>
+          <Link to={`/bookDetails/${_id}`}><button className="px-5 py-1 shadow-xl text-[#0087EB] rounded-md font-medium bg-gray-100 underline">See Details</button></Link>
           </div>
         </div>
       </div>

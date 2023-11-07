@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
 import Books from "../components/BooksCategory/Books";
+import BookDetails from "../components/BooksCategory/BookDetails";
 
 const Route = createBrowserRouter([
     {
@@ -26,6 +27,12 @@ const Route = createBrowserRouter([
                 path: '/books/:category',
                 element : <Books></Books>,
                 loader : ({params}) => fetch(`http://localhost:5000/books/${params.category}`) 
+            },
+
+            {
+                path:'/bookDetails/:id',
+                element: <BookDetails></BookDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/singleBook/${params.id}`)
             },
 
             {

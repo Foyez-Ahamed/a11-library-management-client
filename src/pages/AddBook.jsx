@@ -105,6 +105,7 @@ const AddBook = () => {
                   <label>Category</label>
                   <select
                     name="category"
+                    required
                     className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
                   >
                     <option value="">Select a Category</option>
@@ -133,6 +134,7 @@ const AddBook = () => {
                   <input
                     type="text"
                     placeholder="Rating"
+                    required
                     name="rating"
                     className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
                   />{" "}
