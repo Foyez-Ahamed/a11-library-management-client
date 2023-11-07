@@ -7,7 +7,7 @@ const ReadBook = () => {
 
     return (
         <div className="mt-10">
-            <h1>{books.description}</h1>
+            <p className="w-[50%] mx-auto text-xl text-gray-600">{books.description}</p>
         </div>
     );
 };
