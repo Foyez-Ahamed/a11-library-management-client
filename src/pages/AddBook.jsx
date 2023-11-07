@@ -48,7 +48,7 @@ const AddBook = () => {
         <div>
 
           <div>
-            <h1 className="text-center text-4xl font-medium">Add Books</h1>
+            <h1 className="text-center text-4xl font-medium">Add Book</h1>
           </div>
 
          
