@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const BookDetails = () => {
 
@@ -17,7 +18,7 @@ const BookDetails = () => {
     const returnDate = form.date.value;
     const name = user?.displayName;
     const email = user?.email;
-    const quantityBook = quantity - 1;
+  
     const borrowedBook = {
         returnDate,
         name,
@@ -26,10 +27,44 @@ const BookDetails = () => {
         bookName : singleBook.name,
         category : singleBook.category,
         borrowedDate : new Date(),
-        quantityBook
     }
 
-    console.log(borrowedBook);
+    
+    const updateQuantity = {
+       quantity : quantity - 1
+    }
+
+    fetch('http://localhost:5000/borrowedBook' , {
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(borrowedBook)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.insertedId){
+        Swal.fire({
+            title: 'success!',
+            text: 'Borrowed Book successfully',
+            icon: 'success',
+            confirmButtonText: 'Thanks!'
+          })
+    }
+    })
+
+    fetch(`http://localhost:5000/borrowedBook/${_id}`, {
+          method:'PUT',
+          headers: {
+            'content-type' : 'application/json'
+          },
+          body: JSON.stringify(updateQuantity)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        })
 
   }
 
