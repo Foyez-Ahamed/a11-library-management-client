@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 const BookDetails = () => {
   const singleBook = useLoaderData();
 
-  const {image, description, author_name, name} = singleBook || {};
+  const {_id, image, description, author_name, name} = singleBook || {};
 
   return (
     <div>
@@ -23,7 +23,7 @@ const BookDetails = () => {
             <div className="flex gap-8">
             <Link><button className="px-5 py-1 bg-[#0087EB] text-white rounded-md font-medium ">Borrow</button></Link>
 
-            <Link><button className="px-5 py-1 bg-[#0087EB] text-white rounded-md font-medium ">Read</button></Link>
+            <Link to={`/readBook/${_id}`} readBook ={description} ><button className="px-5 py-1 bg-[#0087EB] text-white rounded-md font-medium ">Read</button></Link>
             </div>
 
           </div>

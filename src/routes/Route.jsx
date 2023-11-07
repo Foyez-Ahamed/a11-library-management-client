@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
 import Books from "../components/BooksCategory/Books";
 import BookDetails from "../components/BooksCategory/BookDetails";
+import ReadBook from "../components/BooksCategory/ReadBook";
 
 const Route = createBrowserRouter([
     {
@@ -31,7 +32,13 @@ const Route = createBrowserRouter([
 
             {
                 path:'/bookDetails/:id',
-                element: <BookDetails></BookDetails>,
+                element: <PrivateRoute><BookDetails></BookDetails></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/singleBook/${params.id}`)
+            },
+
+            {
+                path : '/readBook/:id',
+                element: <ReadBook></ReadBook>,
                 loader: ({params}) => fetch(`http://localhost:5000/singleBook/${params.id}`)
             },
 
