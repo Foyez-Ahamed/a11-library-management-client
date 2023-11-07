@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const AllBooks = ({ allBook }) => {
-  const {_id, image, name, author_name, category, quantity} = allBook || {};
+  const {_id, image, name, author_name, category, quantity, rating} = allBook || {};
   return (
     <div>
       <div className="card bg-base-100 shadow-md">
@@ -20,13 +22,8 @@ const AllBooks = ({ allBook }) => {
           <p>Writer: {author_name}</p>
           <p>Category: {category}</p>
            
-          <div className="rating rating-sm">
-         <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" />
-         <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" checked />
-         <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" />
-         <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" />
-         <input type="radio" name="rating-6" className="mask mask-star-2 bg-orange-400" />
-         </div>
+          <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
+
           <div className="card-actions justify-end">
           <Link to={`/updateBook/${_id}`}><button className="px-5 py-1 shadow-xl text-[#0087EB] rounded-md font-medium bg-gray-100">Update Book</button></Link>
           </div>

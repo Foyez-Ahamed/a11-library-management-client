@@ -29,7 +29,7 @@ const BookDetails = () => {
         quantityBook
     }
 
-    // console.log(borrowedBook);
+    console.log(borrowedBook);
 
   }
 
@@ -51,12 +51,13 @@ const BookDetails = () => {
               {/* Open the modal using document.getElementById('ID').showModal() method */}
               <Link>
                 <button
+                  disabled = {quantity == 0}
                   onClick={() =>
                     document.getElementById("my_modal_5").showModal()
                   }
                   className="px-6 py-2 bg-[#0087EB] text-white rounded-md font-medium "
                 >
-                  Borrow
+                  Borrow 
                 </button>
               </Link>
               <dialog
