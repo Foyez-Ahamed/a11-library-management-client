@@ -15,7 +15,7 @@ const BookDetails = () => {
           />
           <div>
             <h1 className="text-2xl lg:text-4xl font-bold">{name}</h1>
-            <p>Written by : {author_name}</p>
+            <p>Written b : {author_name}</p>
             <p className="py-6">
               {description}
             </p>
