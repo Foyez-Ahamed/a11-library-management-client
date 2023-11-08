@@ -1,60 +1,60 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const BorrowedBook = ({borrow , borrowedBook, setBorrowedBook}) => {
+const BorrowedBook = ({ borrow, borrowedBook, setBorrowedBook }) => {
+  const [book, setBook] = useState([]);
 
-    const {_id, image, bookName, borrowedDate, returnDate, category, quantity} = borrow || {};
+  const { _id, image, bookName, borrowedDate, returnDate, category } =
+    borrow || {};
 
-    const handleReturnDate = id => {
+  useEffect(() => {
+    fetch(`https://library-management-server-sigma.vercel.app/increaseQuantity/${bookName}`)
+      .then((res) => res.json())
+      .then((data) => setBook(data));
+  }, [bookName]);
 
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              fetch(`http://localhost:5000/removeBook/${id}`, {
-                method: "DELETE",
+  const handleReturnDate = (id) => {
+    Swal.fire({
+      title: "Are you sure borrow book?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, return it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://library-management-server-sigma.vercel.app/removeBook/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+
+              const remaining = borrowedBook.filter(
+                (borrowed) => borrowed._id !== id
+              );
+              setBorrowedBook(remaining);
+
+              const updateQuantity = {
+                quantity: book.quantity + 1,
+              };
+
+              fetch(`https://library-management-server-sigma.vercel.app/borrowedBook/${book._id}`, {
+                method: "PUT",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(updateQuantity),
               })
                 .then((res) => res.json())
-                .then((data) => { 
-                  if (data.deletedCount > 0) {
-                    Swal.fire("Deleted!", "Your file has been deleted.", "success");
-
-                    const remaining = borrowedBook.filter(borrowed => borrowed._id !== id )
-                     setBorrowedBook(remaining);
-                  }
+                .then((data) => {
+                  setBook(data)
                 });
-
-                // const updateQuantity = {
-                //     quantity : quantity + 1
-                // }
-
-
             }
           });
-
-
-        //  fetch(`http://localhost:5000/removeBook/${id}`, {
-        //     method : 'DELETE'
-        //  })
-        //  .then(res => res.json())
-        //  .then(data => {
-        //    console.log(data);
-        //    if(data.deletedCount > 0){
-        //     Swal.fire({
-        //         title: "Good job!",
-        //         text: "You clicked the button!",
-        //         icon: "success"
-        //       });
-        //    }
-        //  })
-    }
+      }
+    });
+  };
 
   return (
     <div>

@@ -39,7 +39,7 @@ const BookDetails = () => {
        quantity : quantity - 1
     }
 
-    fetch('http://localhost:5000/borrowedBook' , {
+    fetch('https://library-management-server-sigma.vercel.app/borrowedBook' , {
       method: 'POST',
       headers: {
         'content-type' : 'application/json'
@@ -48,7 +48,7 @@ const BookDetails = () => {
     })
     .then(res => res.json())
     .then(data => {
-      axios.get(`http://localhost:5000/singleBook/${_id}`)
+      axios.get(`https://library-management-server-sigma.vercel.app/singleBook/${_id}`)
       .then(res => setSingleBook(res.data))
       if(data.insertedId){
         Swal.fire({
@@ -60,7 +60,7 @@ const BookDetails = () => {
     }
     })
 
-    fetch(`http://localhost:5000/borrowedBook/${_id}`, {
+    fetch(`https://library-management-server-sigma.vercel.app/borrowedBook/${_id}`, {
           method:'PUT',
           headers: {
             'content-type' : 'application/json'

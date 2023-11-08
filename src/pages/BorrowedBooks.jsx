@@ -9,7 +9,7 @@ const BorrowedBooks = () => {
 
     const [borrowedBook, setBorrowedBook] = useState([]);
 
-    const url = `http://localhost:5000/borrowedBook?email=${user.email}`
+    const url = `https://library-management-server-sigma.vercel.app/borrowedBook?email=${user.email}`
 
     useEffect(() => {
         fetch(url)
@@ -45,7 +45,7 @@ const BorrowedBooks = () => {
         
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 dark:text-black">
             {
-                borrowedBook.map(borrow => <BorrowedBook key={borrow._id} borrow = {borrow} borrowedBook={borrowedBook} setBorrowedBook={setBorrowedBook}></BorrowedBook>)
+                borrowedBook.map(borrow => <BorrowedBook key={borrow._id} borrow = {borrow} borrowedBook={borrowedBook} setBorrowedBook={setBorrowedBook} ></BorrowedBook>)
             }
         </div>  
 

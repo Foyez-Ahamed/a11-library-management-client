@@ -18,7 +18,7 @@ const AddBook = () => {
 
         const addBooks = {image, name, rating, quantity, author, category, description};  
 
-     fetch('http://localhost:5000/books', {credentials: 'include'}, {
+     fetch('https://library-management-server-sigma.vercel.app/books', {credentials: 'include'}, {
       method:'POST',
       headers: {
         'content-type' : 'application/json'
