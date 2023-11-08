@@ -3,7 +3,7 @@
  <h3>Website Live Link : <a href=""> https://library-management-15e08.web.app/ </a></h3>
 
 
- <h1>Website features ble : </h1>
+ <h1>Website features blew : </h1>
  <ul>
     <li> On navbar you can see the website name with logo, Home, Add Book, All Book and Borrowed Book page/route and login button </li>
     <li>Add book, all book and borrowed book route are private route. If user not login user cannot access this routes.</li>
