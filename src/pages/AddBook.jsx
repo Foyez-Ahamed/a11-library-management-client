@@ -16,15 +16,15 @@ const AddBook = () => {
         const description = form.description.value;
         const rating = form.rating.value;
 
-        const addBooks = {image, name, rating, quantity, author, category, description};
+        const addBooks = {image, name, rating, quantity, author, category, description};  
 
-      fetch('http://localhost:5000/books', {
+     fetch('http://localhost:5000/books', {credentials: 'include'}, {
       method:'POST',
       headers: {
         'content-type' : 'application/json'
       },
       body: JSON.stringify(addBooks)
-    })
+    },)
     .then(res => res.json())
     .then(data => {
 
@@ -44,7 +44,7 @@ const AddBook = () => {
     return (
         <div>
             
-         <section className="flex justify-center items-center w-full md:w-full lg:w-3/4 shadow-xl rounded-xl p-3 mx-auto bg-slate-100 mt-10">
+         <section className="flex justify-center items-center w-full md:w-full lg:w-3/4 shadow-xl rounded-xl p-3 mx-auto bg-slate-100 mt-10 dark:text-black">
         <div>
 
           <div>

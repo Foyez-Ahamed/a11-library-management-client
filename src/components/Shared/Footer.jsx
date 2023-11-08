@@ -6,21 +6,21 @@ const Footer = () => {
     return (
         <>
 
-        <footer className="bg-[#FFFFFF] shadow-lg">
+        <footer className="bg-[#FFFFFF] dark:bg-zinc-900 dark:text-white shadow-lg">
         <section className="flex flex-col md:flex-col lg:flex-row  justify-between p-4 md:p-4 lg:p-5 text-black space-y-5">
 
-<div className="mt-6">
+<div className="mt-6 dark:text-white">
     <img className="w-[120px] object-cover" src={logo} alt="" />
-    <p className="text-[#0087EB] lg:ml-2 cursor-pointer">Library Management System</p>
+    <p className="text-[#0087EB] dark:text-white lg:ml-2 cursor-pointer">Library Management System</p>
 
- <div className="flex gap-4 mt-4 lg:ml-3">
-    <a href=""> <span className="text-2xl text-[#1877F2]"><FaFacebook></FaFacebook></span> </a>
+ <div className="flex gap-4 mt-4 lg:ml-3 dark:text-white">
+    <a href=""> <span className="text-2xl text-[#1877F2] "><FaFacebook></FaFacebook></span> </a>
    <a href=""> <span className="text-2xl text-[#1DA1F2]"><FaTwitter></FaTwitter></span> </a>
     <a href=""> <span className="text-2xl text-[#0077B5]"><FaLinkedin></FaLinkedin></span> </a>
 </div>
 
 <div className="lg:ml-3">
-     <ul className="mt-4">
+     <ul className="mt-4 dark:text-white">
         <li className="flex items-center gap-2"> <AiFillHome className="text-gray-400"></AiFillHome> Sector-3, Azampur, Uttara</li>
         <li className="flex items-center gap-2"><AiFillPhone className="text-gray-400"></AiFillPhone> +8801316782</li>
         <li className="flex items-center gap-2"><AiTwotoneMail className="text-gray-400"></AiTwotoneMail>bookCorner@gmail.com</li>
@@ -30,8 +30,8 @@ const Footer = () => {
 </div>
 
 <div>
-    <h1 className="font-bold">About The Library</h1>
-     <ul className="mt-4 space-y-4">
+    <h1 className="font-bold dark:text-white">About The Library</h1>
+     <ul className="mt-4 space-y-4 dark:text-white">
         <li className="flex items-center gap-2 hover:text-[#1DA1F2] cursor-pointer"> Vision, Mission and values</li>
         <li className="flex items-center gap-2 hover:text-[#1DA1F2] cursor-pointer">Customers feedback standers</li>
         <li className="flex items-center gap-2 hover:text-[#1DA1F2] cursor-pointer">Strategic plans, annual reports</li>
@@ -41,8 +41,8 @@ const Footer = () => {
 </div>
 
 <div>
-    <h1 className="font-bold">Accessibility</h1>
-     <ul className="mt-4 space-y-4">
+    <h1 className="font-bold dark:text-white">Accessibility</h1>
+     <ul className="mt-4 space-y-4 dark:text-white">
         <li className="flex items-center gap-2 hover:text-[#1DA1F2] cursor-pointer"> Accessibility of library brunches</li>
         <li className="flex items-center gap-2 hover:text-[#1DA1F2] cursor-pointer">Can borrowed books</li>
         <li className="flex items-center gap-2 hover:text-[#1DA1F2] cursor-pointer">Website accessibility</li>

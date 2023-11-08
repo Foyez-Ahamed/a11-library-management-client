@@ -2,10 +2,14 @@ import { Link, useLoaderData } from "react-router-dom";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import axios from "axios";
 
 const BookDetails = () => {
 
-  const singleBook = useLoaderData();
+  const loadedSingleBook = useLoaderData();
+
+  const [singleBook, setSingleBook] = useState(loadedSingleBook);
 
   const {user} = useAuth();
 
@@ -26,6 +30,7 @@ const BookDetails = () => {
         image : singleBook.image,
         bookName : singleBook.name,
         category : singleBook.category,
+        quantity : singleBook.quantity,
         borrowedDate : new Date(),
     }
 
@@ -43,7 +48,8 @@ const BookDetails = () => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      axios.get(`http://localhost:5000/singleBook/${_id}`)
+      .then(res => setSingleBook(res.data))
       if(data.insertedId){
         Swal.fire({
             title: 'success!',
@@ -63,7 +69,7 @@ const BookDetails = () => {
         })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          setSingleBook(data);
         })
 
   }
