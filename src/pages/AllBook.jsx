@@ -1,6 +1,6 @@
 import AllBooks from "../components/AllBooks/AllBooks";
 import { useEffect, useState } from "react";
-import useAxiosSecure from "../hooks/useAxiosSecure";
+import axios from "axios";
 
 const AllBook = () => {
 
@@ -9,23 +9,19 @@ const AllBook = () => {
     const [filterBook, setFilterBook] = useState([]);
 
     const [showBooks, setShowBooks] = useState([]);
-
-    const axiosSecure = useAxiosSecure();
-
-    const url = '/allBooks'
-    const urlFilter = '/filterBooks'
+ 
 
     useEffect(() => {
-       axiosSecure.get(url)
+      axios.get('https://library-management-server-sigma.vercel.app/allBooks')
         .then(res => {setAllBooks(res.data)
             setShowBooks(res.data)
         })
-    },[axiosSecure])
+    },[])
     
     useEffect(() => {
-         axiosSecure.get(urlFilter)
+         axios.get('https://library-management-server-sigma.vercel.app/filterBooks')
         .then(res => setFilterBook(res.data))
-    },[axiosSecure])
+    },[])
 
     const handleAllBooks = () => {
         setShowBooks(allBooks);
