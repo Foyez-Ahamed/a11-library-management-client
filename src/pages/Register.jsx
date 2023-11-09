@@ -57,7 +57,7 @@ const Register = () => {
     return (
         <div className="mt-16">
       <div className="flex justify-center">
-        <div className="shadow-xl p-8 w-full md:w-[450px] lg:w-[450px] rounded-xl bg-slate-100 dark:bg-zinc-900 dark:text-black">
+        <div className="shadow-xl p-8 w-full md:w-[450px] lg:w-[450px] rounded-xl bg-slate-100 dark:bg-zinc-900">
           <div>
             <h1 className=" font-medium text-center text-3xl mb-6">
               Register Here Please
