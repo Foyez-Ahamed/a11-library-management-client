@@ -1,6 +1,6 @@
 <h3> Website name : Library Management System </h3>
 
- <h3>Website Live Link : <a href=""> https://library-management-15e08.web.app/ </a></h3>
+ <h3>Website Live Link : <a href=""> https://library-management-15e08.web.app </a></h3>
 
 
  <h1>Website features blew : </h1>
@@ -14,5 +14,5 @@
     <li>If you login in website you can see your email photo and name and also see  logout button . If you want you can logout</li>
 </ul>
 
-<h4>Message : if find some issue please reload page ! i implement everything but sometimes live site not work</h4>
+<h4>Message : If find some issue please reload page ! I implement everything but sometimes live site not work</h4>
 

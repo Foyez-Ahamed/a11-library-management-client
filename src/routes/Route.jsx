@@ -50,7 +50,6 @@ const Route = createBrowserRouter([
             {
                 path: '/allBooks',
                 element: <PrivateRoute> <AllBook></AllBook> </PrivateRoute>,
-                // loader: () => fetch('https://library-management-server-sigma.vercel.app/allBooks')
             },
 
             {

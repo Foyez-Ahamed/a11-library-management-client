@@ -47,7 +47,7 @@ const Login = () => {
     return (
         <div className="mt-16">
         <div className="flex justify-center items-center">
-          <div className="shadow-xl p-8 w-full md:w-[450px] lg:w-[450px] bg-slate-100 rounded-xl">
+          <div className="shadow-xl p-8 w-full md:w-[450px] lg:w-[450px] bg-slate-100 dark:bg-zinc-900 dark:text-black rounded-xl">
             
             <div>
               <h1 className="text-center font-medium text-3xl mb-6">

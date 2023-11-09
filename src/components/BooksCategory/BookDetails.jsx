@@ -76,7 +76,7 @@ const BookDetails = () => {
 
   return (
     <div>
-      <div className="hero min-h-screen bg-base-100">
+      <div className="hero min-h-screen bg-base-100 dark:bg-zinc-900 dark:text-white">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src={image}

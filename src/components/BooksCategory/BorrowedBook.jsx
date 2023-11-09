@@ -15,7 +15,7 @@ const BorrowedBook = ({ borrow, borrowedBook, setBorrowedBook }) => {
 
   const handleReturnDate = (id) => {
     Swal.fire({
-      title: "Are you sure borrow book?",
+      title: "Are you sure return book?",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -28,7 +28,7 @@ const BorrowedBook = ({ borrow, borrowedBook, setBorrowedBook }) => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              Swal.fire("Deleted!", "Your book has been removed.", "success");
 
               const remaining = borrowedBook.filter(
                 (borrowed) => borrowed._id !== id
