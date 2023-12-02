@@ -68,12 +68,25 @@ const BookDetails = () => {
             if (modal) {
               modal.close();
             }
-
             // setUpdatedBook 
             setSingleBook(res.data.book)
           }
          
         })
+      }
+
+      else {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Your already borrow this book !",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        const modal = document.getElementById("my_modal_5");
+        if (modal) {
+          modal.close();
+        }
       }
     })
 
@@ -146,15 +159,16 @@ const BookDetails = () => {
                   Borrow 
                 </button>
               </Link>
+              {/* modal */}
               <dialog
                 id="my_modal_5"
                 className="modal modal-bottom sm:modal-middle"
               >
-                <div className="modal-box">
+                <div className="modal-box dark:bg-zinc-900">
                   <div>
                     <form onSubmit={handleSubmit}>
                     <label className="font-medium">Return Date</label> <br />   
-                    <input type="date" name="date" placeholder="Please enter return date" className="input input-bordered w-full max-w-xs mt-2" />
+                    <input type="date" name="date" placeholder="Please enter return date" className="input input-bordered w-full max-w-xs mt-2 dark:bg-gray-500" />
                     <input type="submit" value="Submit" className="ml-2 bg-[#0087EB] px-5 py-3 rounded-md text-white cursor-pointer font-medium" />
                     
                     </form>
