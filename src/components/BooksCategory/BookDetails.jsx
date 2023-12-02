@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { format } from 'date-fns';
 
 const BookDetails = () => {
 
@@ -41,7 +42,7 @@ const BookDetails = () => {
         bookId : singleBook._id,
         category : singleBook.category,
         quantity : singleBook.quantity,
-        borrowedDate : new Date()
+        borrowedDate: format(new Date(), 'yyyy-MM-dd'),
     }
 
     // console.log(borrowedBook);
@@ -58,7 +59,7 @@ const BookDetails = () => {
             Swal.fire({
               position: "top",
               icon: "success",
-              title: `${name} are added to borrowed book page`,
+              title: `${singleBook.name} are added to borrowed book page`,
               showConfirmButton: false,
               timer: 1500
             });

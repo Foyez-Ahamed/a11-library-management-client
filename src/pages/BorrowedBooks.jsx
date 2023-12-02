@@ -2,6 +2,7 @@
 import Swal from "sweetalert2";
 import useBorrowedBooks from "../hooks/useBorrowedBooks";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import Marquee from "react-fast-marquee";
 
 
 const BorrowedBooks = () => {
@@ -95,6 +96,14 @@ const BorrowedBooks = () => {
           max="100"
         ></progress>
       </div>
+
+        
+        {
+          !borrowedBooks.length && 
+          <div className="mt-10">
+            <Marquee><h1 className="text-xl font-bold text-blue-500">Not Borrowed Book Yet !😑</h1></Marquee>
+          </div> 
+        }
         
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 dark:text-black">
             {
