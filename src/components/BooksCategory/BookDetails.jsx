@@ -3,11 +3,18 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import axios from "axios";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const BookDetails = () => {
 
   const loadedSingleBook = useLoaderData();
+
+  // const [bookDetails, setBookDetails] = useState(loadedSingleBook);
+
+
+  const axiosPublic = useAxiosPublic();
+
+  // console.log(loadedSingleBook);
 
   const [singleBook, setSingleBook] = useState(loadedSingleBook);
 
@@ -16,9 +23,11 @@ const BookDetails = () => {
   const { _id, image, description, author_name, name, quantity } = singleBook || {};
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
     
     const form = e.target;
+
     const returnDate = form.date.value;
     const name = user?.displayName;
     const email = user?.email;
@@ -29,48 +38,83 @@ const BookDetails = () => {
         email,
         image : singleBook.image,
         bookName : singleBook.name,
+        bookId : singleBook._id,
         category : singleBook.category,
         quantity : singleBook.quantity,
-        borrowedDate : new Date(),
+        borrowedDate : new Date()
     }
+
+    // console.log(borrowedBook);
+
+    axiosPublic.post('/createBorrowedBook', borrowedBook)
+    .then(res => {
+      // console.log(res.data);
+      if(res.data.insertedId) {
+        axiosPublic.patch(`/updateBookQuantity/${_id}`)
+        .then(res => {
+          // console.log(res.data);
+
+          if(res.data.result.modifiedCount) {
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: `${name} are added to borrowed book page`,
+              showConfirmButton: false,
+              timer: 1500
+            });
+
+            const modal = document.getElementById("my_modal_5");
+            if (modal) {
+              modal.close();
+            }
+
+            // setUpdatedBook 
+            setSingleBook(res.data.book)
+          }
+         
+        })
+      }
+    })
+
+
 
     
-    const updateQuantity = {
-       quantity : quantity - 1
-    }
+    // const updateQuantity = {
+    //    quantity : quantity - 1
+    // }
 
-    fetch('http://localhost:5000/borrowedBook' , {
-      method: 'POST',
-      headers: {
-        'content-type' : 'application/json'
-      },
-      body: JSON.stringify(borrowedBook)
-    })
-    .then(res => res.json())
-    .then(data => {
-      axios.get(`http://localhost:5000/singleBook/${_id}`)
-      .then(res => setSingleBook(res.data))
-      if(data.insertedId){
-        Swal.fire({
-            title: 'success!',
-            text: 'Borrowed Book successfully',
-            icon: 'success',
-            confirmButtonText: 'Thanks!'
-          })
-    }
-    })
+    // fetch('http://localhost:5000/borrowedBook' , {
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type' : 'application/json'
+    //   },
+    //   body: JSON.stringify(borrowedBook)
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //   axios.get(`http://localhost:5000/singleBook/${_id}`)
+    //   .then(res => setSingleBook(res.data))
+    //   if(data.insertedId){
+    //     Swal.fire({
+    //         title: 'success!',
+    //         text: 'Borrowed Book successfully',
+    //         icon: 'success',
+    //         confirmButtonText: 'Thanks!'
+    //       })
+    // }
+    // })
 
-    fetch(`http://localhost:5000/borrowedBook/${_id}`, {
-          method:'PUT',
-          headers: {
-            'content-type' : 'application/json'
-          },
-          body: JSON.stringify(updateQuantity)
-        })
-        .then(res => res.json())
-        .then(data => {
-          setSingleBook(data);
-        })
+    // fetch(`http://localhost:5000/borrowedBook/${_id}`, {
+    //       method:'PUT',
+    //       headers: {
+    //         'content-type' : 'application/json'
+    //       },
+    //       body: JSON.stringify(updateQuantity)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       setSingleBook(data);
+    //     })
 
   }
 
