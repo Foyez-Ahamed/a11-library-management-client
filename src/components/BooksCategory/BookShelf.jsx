@@ -11,7 +11,7 @@ const BookShelf = ({ book }) => {
       <div className="card card-side shadow-md">
         <figure>
           <img
-            className=" w-[300px] h-[300px] object-cover"
+            className=" w-[250px] h-[300px] object-cover"
             src={image}
             alt="Movie"
           />

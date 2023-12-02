@@ -8,7 +8,7 @@ const BorrowedBook = ({ borrow, borrowedBook, setBorrowedBook }) => {
     borrow || {};
 
   useEffect(() => {
-    fetch(`https://library-management-server-sigma.vercel.app/increaseQuantity/${bookName}`)
+    fetch(`http://localhost:5000/increaseQuantity/${bookName}`)
       .then((res) => res.json())
       .then((data) => setBook(data));
   }, [bookName]);
@@ -22,7 +22,7 @@ const BorrowedBook = ({ borrow, borrowedBook, setBorrowedBook }) => {
       confirmButtonText: "Yes, return it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://library-management-server-sigma.vercel.app/removeBook/${id}`, {
+        fetch(`http://localhost:5000/removeBook/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -39,7 +39,7 @@ const BorrowedBook = ({ borrow, borrowedBook, setBorrowedBook }) => {
                 quantity: book.quantity + 1,
               };
 
-              fetch(`https://library-management-server-sigma.vercel.app/borrowedBook/${book._id}`, {
+              fetch(`http://localhost:5000/borrowedBook/${book._id}`, {
                 method: "PUT",
                 headers: {
                   "content-type": "application/json",

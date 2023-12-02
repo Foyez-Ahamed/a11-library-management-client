@@ -16,7 +16,7 @@ const Books = () => {
         <div className="hero-overlay bg-opacity-60 rounded-xl"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-xl">
-            <h1 className="text-2xl lg:text-5xl font-bold">All Favorite Here</h1>
+            <h1 className="text-2xl lg:text-5xl font-bold"> Your All Favorite Here!</h1>
           </div>
         </div>
       </div>
