@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddBook = () => {
+
+    const navigate = useNavigate();
+
+    const axiosSecure = useAxiosSecure();
 
     const handleAddBooks = e => {
 
@@ -11,40 +17,61 @@ const AddBook = () => {
         const image = form.image.value;
         const name = form.name.value;
         const quantity = form.quantity.value;
-        const author = form.author.value;
+        const author_name = form.authorName.value;
         const category = form.category.value;
         const description = form.description.value;
         const rating = form.rating.value;
 
-        const addBooks = {image, name, rating, quantity, author, category, description};  
+        const addBooks = {image, name, rating, quantity, author_name , category, description};  
 
-     fetch('http://localhost:5000/books', {
-      method:'POST',
-      headers: {
-        'content-type' : 'application/json'
-      },
-      body: JSON.stringify(addBooks)
-    },)
-    .then(res => res.json())
-    .then(data => {
+        // console.log(addBooks);
 
-      if(data.insertedId){
-        Swal.fire({
-            title: 'success!',
-            text: 'Book added successfully',
-            icon: 'success',
-            confirmButtonText: 'Thanks!'
-          })
-    }
 
-    form.reset();
-    })
+       axiosSecure.post(`http://localhost:5000/createBooks`, addBooks)
+       .then(res => {
+        console.log(res);
+        if(res.data.insertedId) {
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Book added successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+         form.reset();
+          navigate('/');
+       })
+
+    //  fetch('http://localhost:5000/createBooks', {
+    //   method:'POST',
+    //   headers: {
+    //     'content-type' : 'application/json'
+    //   },
+    //   body: JSON.stringify(addBooks)
+    // },)
+    // .then(res => res.json())
+    // .then(data => {
+
+    //   if(data.insertedId){
+    //     Swal.fire({
+    //         title: 'success!',
+    //         text: 'Book added successfully',
+    //         icon: 'success',
+    //         confirmButtonText: 'Thanks!'
+    //       })
+    // }
+    // form.reset();
+    // navigate('/');
+    // })
+
+
     }
 
     return (
         <div>
             
-         <section className="flex justify-center items-center w-full md:w-full lg:w-3/4 shadow-xl rounded-xl p-3 mx-auto bg-slate-100 mt-10 dark:text-black">
+         <section className="flex justify-center items-center w-full md:w-full lg:w-3/4 shadow-xl rounded-xl p-3 mx-auto bg-slate-100 mt-10 dark:text-white dark:bg-zinc-900">
         <div>
 
           <div>
@@ -61,7 +88,7 @@ const AddBook = () => {
                     type="text"
                     placeholder="Image...."
                     name="image"
-                    className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
+                    className="input mt-2 w-full md:w-[390px] lg:w-[390px] dark:bg-gray-500"
                   />{" "}
                 </div>
 
@@ -71,7 +98,7 @@ const AddBook = () => {
                     type="text"
                     placeholder="Name"
                     name="name"
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
+                    className="input mt-2  w-full md:w-[390px] lg:w-[390px] dark:bg-gray-500"
                   />{" "}
                 </div>
               </div>
@@ -84,7 +111,7 @@ const AddBook = () => {
                     type="text"
                     placeholder="quantity of books"
                     name="quantity"
-                    className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
+                    className="input mt-2 w-full md:w-[390px] lg:w-[390px] dark:bg-gray-500"
                   />{" "}
                 </div>
 
@@ -93,8 +120,8 @@ const AddBook = () => {
                   <input
                     type="text"
                     placeholder="Author Name"
-                    name="author"
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
+                    name="authorName"
+                    className="input mt-2  w-full md:w-[390px] lg:w-[390px] dark:bg-gray-500"
                   />{" "}
                 </div>
               </div>
@@ -106,7 +133,7 @@ const AddBook = () => {
                   <select
                     name="category"
                     required
-                    className="input mt-2 w-full md:w-[390px] lg:w-[390px]"
+                    className="input mt-2 w-full md:w-[390px] lg:w-[390px] dark:bg-gray-500"
                   >
                     <option value="">Select a Category</option>
                     <option value="Mystery & Thriller">Mystery & Thriller</option>
@@ -122,7 +149,7 @@ const AddBook = () => {
                     type="text"
                     placeholder="Short description"
                     name="description"
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
+                    className="input mt-2  w-full md:w-[390px] lg:w-[390px] dark:bg-gray-500"
                   />{" "}
                 </div>
               </div>
@@ -136,7 +163,7 @@ const AddBook = () => {
                     placeholder="Rating"
                     required
                     name="rating"
-                    className="input mt-2  w-full md:w-[390px] lg:w-[390px]"
+                    className="input mt-2  w-full md:w-[390px] lg:w-[390px] dark:bg-gray-500"
                   />{" "}
                 </div>
               </div>

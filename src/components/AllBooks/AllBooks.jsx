@@ -6,7 +6,7 @@ const AllBooks = ({ allBook }) => {
   const {_id, image, name, author_name, category, quantity, rating} = allBook || {};
   return (
     <div>
-      <div className="card bg-base-100 shadow-md">
+      <div className="card bg-base-100 dark:bg-zinc-900 dark:text-white shadow-md">
         <figure>
           <img
             className=" h-[300px] lg:h-[200px] md:h-[300px] w-full object-cover"
