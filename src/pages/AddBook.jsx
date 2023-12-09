@@ -27,7 +27,7 @@ const AddBook = () => {
         // console.log(addBooks);
 
 
-       axiosSecure.post(`http://localhost:5000/createBooks`, addBooks)
+       axiosSecure.post(`https://library-management-server-sigma.vercel.app/createBooks`, addBooks)
        .then(res => {
         console.log(res);
         if(res.data.insertedId) {
@@ -43,7 +43,7 @@ const AddBook = () => {
           navigate('/');
        })
 
-    //  fetch('http://localhost:5000/createBooks', {
+    //  fetch('https://library-management-server-sigma.vercel.app/createBooks', {
     //   method:'POST',
     //   headers: {
     //     'content-type' : 'application/json'
