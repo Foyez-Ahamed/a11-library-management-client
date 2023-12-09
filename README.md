@@ -4,7 +4,7 @@
 ### [Live Link](https://extraordinary-horse-d99f79.netlify.app/) 
 
 ## Project Description:
-- Library Management system functionality Implement. Its a full MERN stack project.
+- A React-based web application facilitating user authentication, book exploration, seamless borrowing, and returning. User-friendly interface for efficient book management.
 
 ## Features:
 - User Authentication : Securely log in to access personalized features.<br>
