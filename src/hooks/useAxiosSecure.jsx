@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const axisSecure = axios.create({
+const axiosSecure = axios.create({
     baseURL : 'http://localhost:5000'
 })
 
 const useAxiosSecure = () => {
    
-  return axisSecure;
+  return axiosSecure;
 
 
 };

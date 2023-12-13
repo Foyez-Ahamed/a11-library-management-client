@@ -1,9 +1,12 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateBook = () => {
 
     const books = useLoaderData();
+
+    const axiosSecure = useAxiosSecure();
 
     const navigate = useNavigate();
     
@@ -24,27 +27,43 @@ const UpdateBook = () => {
         const updateBooks = {image, name, rating, author, category};
 
 
-        fetch(`https://library-management-server-sigma.vercel.app/books/${_id}`, {
-          method:'PUT',
-          headers: {
-            'content-type' : 'application/json'
-          },
-          body: JSON.stringify(updateBooks)
-        })
-        .then(res => res.json())
-        .then(data => {
-          if(data.modifiedCount > 0){
+        // fetch(`http://localhost:5000/books/${_id}`, {
+        //   method:'PUT',
+        //   headers: {
+        //     'content-type' : 'application/json'
+        //   },
+        //   body: JSON.stringify(updateBooks)
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //   if(data.modifiedCount > 0){
+        //     Swal.fire({
+        //         title: 'success!',
+        //         text: 'Book updated successfully',
+        //         icon: 'success',
+        //         confirmButtonText: 'Thanks'
+        //       })
+        // }
+
+        // navigate('/allBooks')
+        // })
+
+
+        axiosSecure.put(`/books/${_id}`, updateBooks)
+        .then(res => {
+          console.log(res.data);
+          if(res.data.modifiedCount > 0) {
             Swal.fire({
-                title: 'success!',
-                text: 'Book updated successfully',
-                icon: 'success',
-                confirmButtonText: 'Thanks'
-              })
-        }
+              title: 'success!',
+              text: 'Book updated successfully',
+              icon: 'success',
+              confirmButtonText: 'Thanks'
+            })
+          }
 
-        navigate('/allBooks')
+          navigate('/allBooks')
+
         })
-
 
     }
 
