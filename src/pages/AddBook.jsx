@@ -29,7 +29,7 @@ const AddBook = () => {
 
        axiosSecure.post(`/createBooks`, addBooks)
        .then(res => {
-       console.log(res.data);
+       
         if(res.data.insertedId) {
           Swal.fire({
             position: "top",

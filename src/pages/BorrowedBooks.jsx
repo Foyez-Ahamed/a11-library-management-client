@@ -33,7 +33,7 @@ const BorrowedBooks = () => {
           console.log(res.data);
           if (res.data.deletedCount) {
             axiosPublic.patch(`/increaseBookQuantity/${bookId}`).then((res) => {
-              console.log(res);
+             
               if (res.data.modifiedCount) {
                 Swal.fire({
                   position: "top",
