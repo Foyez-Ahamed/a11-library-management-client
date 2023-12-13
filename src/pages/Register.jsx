@@ -9,13 +9,19 @@ const auth = getAuth(app);
 
 const Register = () => {
 
-    const {userRegister} = useAuth();
+    const { userRegister } = useAuth();
+
+    // console.log(userRegister);
+
     const [displayPassIcon, setDisplayPassIcon] = useState(false);
     const location = useLocation();
+
     const goto = useNavigate();
 
     const handleUserRegister = e => {
+
     e.preventDefault();
+
     const form = new FormData(e.currentTarget);
     const name = form.get("name");
     const photoUrl = form.get("photoURL");
@@ -35,17 +41,19 @@ const Register = () => {
     }
 
     userRegister(email, password)
+    
     .then(() => {
       toast.success('Successfully Register');
       e.target.reset();
       goto( location?.state ? location.state : '/' );
-
+      
       updateProfile(auth.currentUser, {
         displayName : name,
         photoURL: photoUrl
       })
       .then()
       .catch()
+
     })
 
     .catch(error => {

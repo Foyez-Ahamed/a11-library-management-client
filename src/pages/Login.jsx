@@ -4,10 +4,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
+// import { getAuth } from "firebase/auth";
+// import app from "../firebase/firebase.config";
+
+// const auth = getAuth(app);
 
 const Login = () => {
 
-    const {userLogin, googleLogin} = useAuth();
+    const { userLogin, googleLogin } = useAuth();
     const [displayPassIcon, setDisplayPassIcon] = useState(false)
     const location = useLocation();
     const goto = useNavigate();
@@ -33,10 +37,24 @@ const Login = () => {
     }
 
     const handleGoogleLogin = (googleProvider) => {
+
        googleProvider()
        .then(() => {
          toast.success('Successfully Login');
          goto(location?.state? location.state : '/');
+
+        //  send user data on database // 
+        //  const user = auth.currentUser;
+
+        //  const userInfo = {
+        //    name : user?.displayName,
+        //    email : user?.email,
+        //    image : user?.photoURL
+        //  }
+
+        //  console.log(userInfo);
+        //  send user data on database // 
+
        })
 
        .catch((error) => {
