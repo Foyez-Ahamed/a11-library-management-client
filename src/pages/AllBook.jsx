@@ -12,14 +12,14 @@ const AllBook = () => {
  
 
     useEffect(() => {
-      axios.get('http://localhost:5000/allBooks')
+      axios.get('https://library-management-server-sigma.vercel.app/allBooks')
         .then(res => {setAllBooks(res.data)
             setShowBooks(res.data)
         })
     },[])
     
     useEffect(() => {
-         axios.get('http://localhost:5000/filterBooks')
+         axios.get('https://library-management-server-sigma.vercel.app/filterBooks')
         .then(res => setFilterBook(res.data))
     },[])
 
