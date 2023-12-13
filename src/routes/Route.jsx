@@ -22,25 +22,25 @@ const Route = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader : () => fetch('https://library-management-server-sigma.vercel.app/booksCategory')
+                loader : () => fetch('http://localhost:5000/booksCategory')
             },
 
             {
                 path: '/books/:category',
                 element : <Books></Books>,
-                loader : ({params}) => fetch(`https://library-management-server-sigma.vercel.app/books/${params.category}`) 
+                loader : ({params}) => fetch(`http://localhost:5000/books/${params.category}`) 
             },
 
             {
                 path:'/bookDetails/:id',
                 element: <PrivateRoute><BookDetails></BookDetails></PrivateRoute>,
-                loader: ({params}) => fetch(`https://library-management-server-sigma.vercel.app/singleBook/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/singleBook/${params.id}`)
             },
 
             {
                 path : '/readBook/:id',
                 element: <ReadBook></ReadBook>,
-                loader: ({params}) => fetch(`https://library-management-server-sigma.vercel.app/singleBook/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/singleBook/${params.id}`)
             },
 
             {
@@ -55,7 +55,7 @@ const Route = createBrowserRouter([
             {
                 path:'/updateBook/:id',
                 element : <PrivateRoute><UpdateBook></UpdateBook></PrivateRoute>,
-                loader: ({params}) => fetch(`https://library-management-server-sigma.vercel.app/singleBook/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/singleBook/${params.id}`)
             },
 
 

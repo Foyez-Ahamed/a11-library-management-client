@@ -89,6 +89,7 @@ const Navbar = () => {
           </Link>
 
           <button onClick={changeTheme} className="mt-[-4px] lg:mt-0"> {mode === 'dark'? <BsFillSunFill className="lg:text-xl"></BsFillSunFill> : <FaMoon className="lg:text-xl"></FaMoon>} </button>
+          
          </div>
 
         </div>
