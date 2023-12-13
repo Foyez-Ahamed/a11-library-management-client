@@ -5,21 +5,22 @@ import toast from "react-hot-toast";
 import { getAuth, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import useAuth from "../hooks/useAuth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 const auth = getAuth(app);
 
 const Register = () => {
+  const { userRegister } = useAuth();
 
-    const { userRegister } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
-    // console.log(userRegister);
+  // console.log(userRegister);
 
-    const [displayPassIcon, setDisplayPassIcon] = useState(false);
-    const location = useLocation();
+  const [displayPassIcon, setDisplayPassIcon] = useState(false);
+  const location = useLocation();
 
-    const goto = useNavigate();
+  const goto = useNavigate();
 
-    const handleUserRegister = e => {
-
+  const handleUserRegister = (e) => {
     e.preventDefault();
 
     const form = new FormData(e.currentTarget);
@@ -33,37 +34,53 @@ const Register = () => {
       return;
     } else if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/.test(
-        password)) {
-        toast.error(
+        password
+      )
+    ) {
+      toast.error(
         "Your password must have at least one capital letter and special character!"
       );
-      return
+      return;
     }
 
     userRegister(email, password)
-    
-    .then(() => {
-      toast.success('Successfully Register');
-      e.target.reset();
-      goto( location?.state ? location.state : '/' );
-      
-      updateProfile(auth.currentUser, {
-        displayName : name,
-        photoURL: photoUrl
+      .then(() => {
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photoUrl,
+        })
+          .then()
+          .catch();
+
+        // sent user info in database //
+        const userInfo = {
+          name: name,
+          email: email,
+          image: photoUrl,
+        };
+
+       
+
+        axiosPublic.post("/createUser", userInfo).then((res) => {
+         
+          if (res.data.insertedId) {
+            toast.success("Successfully Register");
+            e.target.reset();
+            goto(location?.state ? location.state : "/");
+          }
+          
+        });
+
+        // sent user info in database //
       })
-      .then()
-      .catch()
 
-    })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
 
-    .catch(error => {
-      toast.error(error);
-    })
-
-    }
-
-    return (
-        <div className="mt-16">
+  return (
+    <div className="mt-16">
       <div className="flex justify-center">
         <div className="shadow-xl p-8 w-full md:w-[450px] lg:w-[450px] rounded-xl bg-slate-100 dark:bg-zinc-900">
           <div>
@@ -74,7 +91,10 @@ const Register = () => {
 
           <form onSubmit={handleUserRegister}>
             <div className="relative">
-              <label htmlFor="name" className="font-medium ">Name</label> <br />
+              <label htmlFor="name" className="font-medium ">
+                Name
+              </label>{" "}
+              <br />
               <input
                 type="Text"
                 placeholder="enter your name..."
@@ -83,7 +103,10 @@ const Register = () => {
                 className=" mt-4 mb-4 input  w-full md:w-[390px] lg:w-[390px]"
               />{" "}
               <br />
-              <label htmlFor="photoURL" className="font-medium">Photo URL</label> <br />
+              <label htmlFor="photoURL" className="font-medium">
+                Photo URL
+              </label>{" "}
+              <br />
               <input
                 type="text"
                 placeholder="Photo URL..."
@@ -92,7 +115,10 @@ const Register = () => {
                 className=" mt-4 mb-4 input  w-full md:w-[390px] lg:w-[390px]"
               />{" "}
               <br />
-              <label htmlFor="email" className="font-medium ">Email</label> <br />
+              <label htmlFor="email" className="font-medium ">
+                Email
+              </label>{" "}
+              <br />
               <input
                 type="email"
                 placeholder="enter your email..."
@@ -101,7 +127,10 @@ const Register = () => {
                 className=" mt-4 mb-4 input  w-full md:w-[390px] lg:w-[390px]"
               />{" "}
               <br />
-              <label htmlFor="password" className="font-medium ">Password</label> <br />
+              <label htmlFor="password" className="font-medium ">
+                Password
+              </label>{" "}
+              <br />
               <input
                 type={displayPassIcon ? "text" : "password"}
                 placeholder="enter your password"
@@ -116,7 +145,6 @@ const Register = () => {
               >
                 {displayPassIcon ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
               </span>
-             
               <br />
               <input
                 type="submit"
@@ -141,7 +169,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;
