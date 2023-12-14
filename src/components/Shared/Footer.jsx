@@ -11,7 +11,7 @@ const Footer = () => {
 
 <div className="mt-6 dark:text-white">
     <img className="w-[120px] object-cover" src={logo} alt="" />
-    <p className="text-[#0087EB] dark:text-white lg:ml-2 cursor-pointer">Library Management System</p>
+    <p className="text-[#0087EB] dark:text-white ml-4 cursor-pointer font-bold">BookWise</p>
 
  <div className="flex gap-4 mt-4 lg:ml-3 dark:text-white">
     <a href=""> <span className="text-2xl text-[#1877F2] "><FaFacebook></FaFacebook></span> </a>
